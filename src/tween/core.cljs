@@ -102,7 +102,7 @@
    [TweenMovement {:id "demoCanvas"
                    :item {:id 1
                           :type :circle
-                          :fill "Crimson"
+                          :fill "black"
                           :r 50
                           :x 100
                           :y 100}
@@ -111,7 +111,20 @@
                               {:item 1 :axis :y :pos 75 :t 500 :ease 2 :alpha 0}
                               {:item 1 :axis :y :pos 125 :t 100 :alpha 0}
                               {:item 1 :axis :y :pos 100 :t 500 :ease 2 :alpha 1}
-                              {:item 1 :axis :x :pos 100 :t 800 :ease 2}]}]])
+                              {:item 1 :axis :x :pos 100 :t 800 :ease 2}]}]
+   [TweenMovement {:id "demoCanvas2"
+                   :item {:id 1
+                          :type :circle
+                          :fill "red"
+                          :r 50
+                          :x 100
+                          :y 100}
+                   :fps-ticker 60
+                   :movement [{:item 1 :axis :x :pos 100 :t 1000 :ease 4}
+                              {:item 1 :axis :y :pos 100 :t 500 :ease 2 :alpha 0}
+                              {:item 1 :axis :y :pos 125 :t 100 :alpha 0}
+                              {:item 1 :axis :y :pos 75 :t 500 :ease 2 :alpha 1}
+                              {:item 1 :axis :x :pos 400 :t 800 :ease 2}]}]])
 
 ;; -------------------------
 ;; Initialize app
