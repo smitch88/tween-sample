@@ -30,15 +30,15 @@
 
 (defn create-circle
   [base {:keys [fill r x y] :as props}]
-  ;; use js interop w/ constructor to call shape fn
-  ;; gen circle
   (.. base
       -graphics
       (beginFill fill)
       (drawCircle 0 0 r))
   ;; set pos
-  (aset base "x" x)
-  (aset base "y" y)
+  (when x
+    (aset base "x" x))
+  (when y
+    (aset base "y" y))
   base)
 
 (defn shape-maker
