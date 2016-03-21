@@ -91,40 +91,41 @@
              (.addEventListener Ticker. "tick" stage))
            (js/console.error "Not sure what kind of shape you made"))))
      :reagent-render
-     (fn [{:keys [id] :as props}]
-       [:canvas {:id id :height 500 :width 500}])}))
+     (fn [{:keys [id height width] :as props}]
+       [:canvas {:id id :height height :width width}])}))
 
 (defn home-page []
-  [:div
-   [:h2 "Welcome to Reagent"]
-   [:p "Tween sample from main page integrated with reagent-frontend
-    template not using externs though"]
-   [TweenMovement {:id "demoCanvas"
-                   :item {:id 1
-                          :type :circle
-                          :fill "black"
-                          :r 50
-                          :x 100
-                          :y 100}
-                   :fps-ticker 60
-                   :movement [{:item 1 :axis :x :pos 400 :t 1000 :ease 4}
-                              {:item 1 :axis :y :pos 75 :t 500 :ease 2 :alpha 0}
-                              {:item 1 :axis :y :pos 125 :t 100 :alpha 0}
-                              {:item 1 :axis :y :pos 100 :t 500 :ease 2 :alpha 1}
-                              {:item 1 :axis :x :pos 100 :t 800 :ease 2}]}]
-   [TweenMovement {:id "demoCanvas2"
-                   :item {:id 1
-                          :type :circle
-                          :fill "red"
-                          :r 50
-                          :x 100
-                          :y 100}
-                   :fps-ticker 60
-                   :movement [{:item 1 :axis :x :pos 100 :t 1000 :ease 4}
-                              {:item 1 :axis :y :pos 100 :t 500 :ease 2 :alpha 0}
-                              {:item 1 :axis :y :pos 125 :t 100 :alpha 0}
-                              {:item 1 :axis :y :pos 75 :t 500 :ease 2 :alpha 1}
-                              {:item 1 :axis :x :pos 400 :t 800 :ease 2}]}]])
+  (let [ltr-movement [{:item 1 :axis :x :pos 400 :t 800 :ease 4}
+                      {:item 1 :axis :y :pos 75 :t 500 :ease 2 :alpha 0}
+                      {:item 1 :axis :y :pos 125 :t 100 :alpha 0}
+                      {:item 1 :axis :y :pos 100 :t 500 :ease 2 :alpha 1}
+                      {:item 1 :axis :x :pos 100 :t 800 :ease 2}]]
+    [:div
+     [:h2 "Welcome to Reagent"]
+     [:p "Tween sample from main page integrated with reagent-frontend
+      template not using externs though"]
+     [TweenMovement {:id "demoCanvas"
+                     :height 250
+                     :width 600
+                     :item {:id 1
+                            :type :circle
+                            :fill "black"
+                            :r 50
+                            :x 100
+                            :y 100}
+                     :fps-ticker 60
+                     :movement ltr-movement}]
+     [TweenMovement {:id "demoCanvas2"
+                     :height 250
+                     :width 600
+                     :item {:id 1
+                            :type :circle
+                            :fill "red"
+                            :r 50
+                            :x 400
+                            :y 100}
+                     :fps-ticker 60
+                     :movement (reverse ltr-movement)}]]))
 
 ;; -------------------------
 ;; Initialize app
